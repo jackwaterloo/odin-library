@@ -42,17 +42,17 @@ function addBookToLibrary(title, author, pages, read) {
 
 function displayBooks() {
   const table = document.querySelector("table");
-  const newRow = document.createElement("tr");
-
-  newRow.innerHTML = `
-  <td>The Hobbit</td>
-  <td>J.R.R. Tolkien</td>
-  <td>310</td>
-  <td>Yes</td>
-`;
-
-  const headerRow = document.querySelector("tr");
-  headerRow.after(newRow);
+  
+  for (const book of myLibrary) {
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>${book.title}</td>
+      <td>${book.author}</td>
+      <td>${book.pages}</td>
+      <td>${book.read ? "Yes" : "No"}</td>
+    `;
+    table.appendChild(newRow);
+  }
 }
-
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
 displayBooks();
