@@ -39,3 +39,20 @@ function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
+
+function displayBooks() {
+  const table = document.querySelector("table");
+  const newRow = document.createElement("tr");
+
+  newRow.innerHTML = `
+  <td>The Hobbit</td>
+  <td>J.R.R. Tolkien</td>
+  <td>310</td>
+  <td>Yes</td>
+`;
+
+  const headerRow = document.querySelector("tr");
+  headerRow.after(newRow);
+}
+
+displayBooks();
