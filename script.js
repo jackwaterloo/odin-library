@@ -1,9 +1,41 @@
 const myLibrary = [];
 
-function Book() {
-  // the constructor...
+/**
+ * Represents a book with its details.
+ * @constructor
+ * @param {string} title - The title of the book.
+ * @param {string} author - The author of the book.
+ * @param {number} pages - The number of pages in the book.
+ * @param {boolean} read - Whether the book has been read.
+ * @method info - Logs information about the book to the console.
+ */
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+
+  this.info = function() {
+    let readText = "has been read";
+    if (!this.read) {
+      readText = "not read yet";
+    }
+    console.log(`${this.title} by ${this.author}, ${pages} pages, ${readText}`);
+  }
 }
 
-function addBookToLibrary() {
+/**
+ * Adds a new book to the library.
+ *
+ * Creates a Book instance with the provided details and stores it in the myLibrary array.
+ *
+ * @param {string} title - The title of the book.
+ * @param {string} author - The author of the book.
+ * @param {number} pages - The number of pages in the book.
+ * @param {boolean} read - Whether the book has been read.
+ */
+function addBookToLibrary(title, author, pages, read) {
   // take params, create a book then store it in the array
+  const book = new Book(title, author, pages, read);
+  myLibrary.push(book);
 }
