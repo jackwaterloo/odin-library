@@ -50,18 +50,7 @@ function displayBooks() {
   table.appendChild(tableHeader); // Set the table header
   
   for (const book of myLibrary) {
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.pages}</td>
-      <td>${book.read ? "Yes" : "No"}</td>
-      <td>${book.id}</td>
-      <td>
-        <button class="deleteBtn" data-id="${book.id}">Delete</button>
-        <button class="readBtn" data-id="${book.id}">${book.read ? "Unread" : "Read"}</button>
-      </td>
-    `;
+    const newRow = createTableRow(book);
     table.appendChild(newRow);
   }
   // Add event listeners to btns in table after it is rendered
@@ -69,11 +58,39 @@ function displayBooks() {
   addListenersToReadButtons();
 }
 
-// add event listener to the New Book button
-document.querySelector("#newBookBtn").addEventListener("click", (e) => {
-  const newBookForm = document.querySelector("#newBookFormDiv");
-  newBookForm.classList.toggle("hidden");
-});
+// This function creates a table row for a book object and returns it. Uses textContent to set the text of each td element.
+function createTableRow(book) {
+  const newRow = document.createElement("tr");
+
+  // Create td elements for each property of the book
+  for (const key in book) {
+    const td = document.createElement("td");
+    td.textContent = book[key];
+    if (key === "read") {
+      td.textContent = book[key] ? "Yes" : "No";
+    }
+    newRow.appendChild(td);
+  }
+
+  // Create a td for the Buttons
+  const btnTd = document.createElement("td");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.classList.add("deleteBtn");
+  deleteBtn.setAttribute("data-id", book.id); // bookID is not user input
+  const readBtn = document.createElement("button");
+  readBtn.textContent = book.read ? "Unread" : "Read";
+  readBtn.classList.add("readBtn");
+  readBtn.setAttribute("data-id", book.id); // bookID not user input
+
+  // Adds buttons into the td
+  btnTd.appendChild(deleteBtn);
+  btnTd.appendChild(readBtn);
+  // Adds the Btn td to the new row
+  newRow.appendChild(btnTd);
+
+  return newRow;
+}
 
 // add event listener to the form submit button and handle form submission
 document.querySelector("#submitBookBtn").addEventListener("click", (e) => {
@@ -123,6 +140,6 @@ function addListenersToReadButtons() {
   }
 }
 
-
+// Example usage
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
 displayBooks();
