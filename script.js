@@ -1,4 +1,12 @@
 const myLibrary = [];
+const tableHeader = document.createElement("tr");
+tableHeader.innerHTML = `
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+                <th>ID</th>
+                <th>Buttons</th>`;
 
 /**
  * Represents a book with its details.
@@ -14,12 +22,14 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.id = crypto.randomUUID();
 
   this.info = function() {
     let readText = "has been read";
     if (!this.read) {
       readText = "not read yet";
     }
+    // Log book information to the console
     console.log(`${this.title} by ${this.author}, ${pages} pages, ${readText}`);
   }
 }
@@ -44,6 +54,9 @@ function addBookToLibrary(title, author, pages, read) {
  */
 function displayBooks() {
   const table = document.querySelector("table");
+  // Clear the table before displaying new data
+  table.innerHTML = "";
+  table.appendChild(tableHeader); // Set the table header
   
   for (const book of myLibrary) {
     const newRow = document.createElement("tr");
@@ -52,6 +65,7 @@ function displayBooks() {
       <td>${book.author}</td>
       <td>${book.pages}</td>
       <td>${book.read ? "Yes" : "No"}</td>
+      <td>${book.id}</td>
     `;
     table.appendChild(newRow);
   }
