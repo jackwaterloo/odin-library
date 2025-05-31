@@ -35,11 +35,13 @@ function Book(title, author, pages, read) {
  * @param {boolean} read - Whether the book has been read.
  */
 function addBookToLibrary(title, author, pages, read) {
-  // take params, create a book then store it in the array
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
 
+/**
+ * Displays all books from the `myLibrary` array in an HTML table.
+ */
 function displayBooks() {
   const table = document.querySelector("table");
   
