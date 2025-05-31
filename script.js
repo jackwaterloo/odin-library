@@ -23,15 +23,6 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
   this.id = crypto.randomUUID();
-
-  this.info = function() {
-    let readText = "has been read";
-    if (!this.read) {
-      readText = "not read yet";
-    }
-    // Log book information to the console
-    console.log(`${this.title} by ${this.author}, ${pages} pages, ${readText}`);
-  }
 }
 
 /**
@@ -66,10 +57,17 @@ function displayBooks() {
       <td>${book.pages}</td>
       <td>${book.read ? "Yes" : "No"}</td>
       <td>${book.id}</td>
+      <td>
+        <button class="deleteBtn" data-id="${book.id}">Delete</button>
+        <button class="readBtn" data-id="${book.id}">${book.read ? "Unread" : "Read"}</button>
+      </td>
     `;
     table.appendChild(newRow);
   }
+  // Add event listeners to btns in table after it is rendered
+  addListenersToDeleteButtons();
 }
+
 // add event listener to the New Book button
 document.querySelector("#newBookBtn").addEventListener("click", (e) => {
   const newBookForm = document.querySelector("#newBookFormDiv");
@@ -94,6 +92,21 @@ document.querySelector("#submitBookBtn").addEventListener("click", (e) => {
     alert("Please fill in all fields correctly.");
   }
 });
+
+// Add event listener for delete btns
+function addListenersToDeleteButtons() {
+  for (const deleteBtn of document.querySelectorAll(".deleteBtn")) {
+    deleteBtn.addEventListener("click", (e) => {
+      const bookId = e.target.getAttribute("data-id");
+      const bookIndex = myLibrary.findIndex(book => book.id === bookId);
+      console.log(`Deleting book with ID: ${bookId}`);
+      if (bookIndex !== -1) {
+        myLibrary.splice(bookIndex, 1); // Remove the book from the library
+        displayBooks(); // Refresh the display
+      }
+    });
+  }
+}
 
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
