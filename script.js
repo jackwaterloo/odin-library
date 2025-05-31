@@ -58,6 +58,12 @@ function displayBooks() {
   addListenersToReadButtons();
 }
 
+// add event listener to the New Book button
+document.querySelector("#newBookBtn").addEventListener("click", (e) => {
+  const newBookForm = document.querySelector("#newBookFormDiv");
+  newBookForm.classList.toggle("hidden");
+});
+
 // This function creates a table row for a book object and returns it. Uses textContent to set the text of each td element.
 function createTableRow(book) {
   const newRow = document.createElement("tr");
