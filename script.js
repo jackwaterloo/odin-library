@@ -66,6 +66,7 @@ function displayBooks() {
   }
   // Add event listeners to btns in table after it is rendered
   addListenersToDeleteButtons();
+  addListenersToReadButtons();
 }
 
 // add event listener to the New Book button
@@ -102,6 +103,20 @@ function addListenersToDeleteButtons() {
       console.log(`Deleting book with ID: ${bookId}`);
       if (bookIndex !== -1) {
         myLibrary.splice(bookIndex, 1); // Remove the book from the library
+        displayBooks(); // Refresh the display
+      }
+    });
+  }
+}
+
+// Add event listeners for read/unread btns
+function addListenersToReadButtons() {
+  for (const readBtn of document.querySelectorAll(".readBtn")) {
+    readBtn.addEventListener("click", (e) => {
+      const bookId = e.target.getAttribute("data-id");
+      const book = myLibrary.find(book => book.id === bookId);
+      if (book) {
+        book.read = !book.read; // Toggle the read status
         displayBooks(); // Refresh the display
       }
     });
