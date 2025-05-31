@@ -70,5 +70,31 @@ function displayBooks() {
     table.appendChild(newRow);
   }
 }
+// add event listener to the New Book button
+document.querySelector("#newBookBtn").addEventListener("click", (e) => {
+  const newBookForm = document.querySelector("#newBookFormDiv");
+  newBookForm.classList.toggle("hidden");
+});
+
+// add event listener to the form submit button and handle form submission
+document.querySelector("#submitBookBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  const title = document.querySelector("#title").value.trim();
+  const author = document.querySelector("#author").value.trim();
+  const pages = parseInt(document.querySelector("#pages").value.trim(), 10);
+  const read = document.querySelector("#read").checked;
+
+  // Validate input fields
+  if (title && author && pages > 0) {
+    addBookToLibrary(title, author, pages, read);
+    displayBooks(); // Display the updated library
+    document.querySelector("form").reset(); // Reset the form
+    document.querySelector("#newBookFormDiv").classList.add("hidden"); // Hide the form
+  } else {
+    alert("Please fill in all fields correctly.");
+  }
+});
+
+
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
 displayBooks();
