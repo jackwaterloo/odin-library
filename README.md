@@ -5,7 +5,8 @@ You can also view the project instructions in the `project_library.md` file. The
 
 View my deployed project here: [https://jackwaterloo.github.io/odin-library/](https://jackwaterloo.github.io/odin-library/)
 
-
+## `js-classes` Branch
+I have also refactored this code using classes. You can view the refactored code in the `js-classes` branch. On that branch, the `README.md` is updated to reflect the new JavaScript concepts implemented.
 
 ## JavaScript Tools and Concepts Demonstrated
 **Summary:**  
