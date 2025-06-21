@@ -28,7 +28,10 @@ class Book {
 }
 
 // library class
-
+/**
+ * Represents a library that holds a collection of books.
+ * @class
+ */
 class Library {
   constructor(){
     this.books = [];
@@ -40,6 +43,16 @@ class Library {
 }
 
 // display class
+/**
+ * Class representing the DOM interface for displaying and managing a library of books.
+ * Handles rendering a table of books, including headers, and provides functionality
+ * for deleting books and toggling their read status via dynamically generated buttons.
+ *
+ * @class
+ * @example
+ * const board = new DomBoard();
+ * board.displayBooks();
+ */
 class DomBoard {
   // create static table header
   static #tableHeader = (() => {

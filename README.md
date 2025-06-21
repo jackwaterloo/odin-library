@@ -1,22 +1,18 @@
 # The Odin Project: Library
-This project is from the Odin Project course which can be found here: [https://www.theodinproject.com/lessons/node-path-javascript-library](https://www.theodinproject.com/lessons/node-path-javascript-library)
-
-You can also view the project instructions in the `project_library.md` file. The most up to date instructions will be on the website above.
-
-View my deployed project here: [https://jackwaterloo.github.io/odin-library/](https://jackwaterloo.github.io/odin-library/)
-
-
+This `js-classes` branch is a refactor of the original `main` branch code using JavaScript Classes. This was a learning exercise in for the classes lesson which can be viewed in the `classes.md` file or at [https://www.theodinproject.com/lessons/node-path-javascript-classes](https://www.theodinproject.com/lessons/node-path-javascript-classes)
 
 ## JavaScript Tools and Concepts Demonstrated
 **Summary:**  
-This project highlights proficiency in JavaScript fundamentals, DOM manipulation, event-driven programming, array/object management, and interactive UI development.
+This project demonstrates proficiency in JavaScript ES6 classes, encapsulation, DOM manipulation, event-driven programming, array/object management, and interactive UI development.
 
-### 1. Object-Oriented Programming
-- **Constructor Function:** Used to create `Book` objects, encapsulating book details and behaviors.
-- **Unique Identifiers:** Utilizes `crypto.randomUUID()` to assign a unique ID to each book for reliable operations.
+### 1. Object-Oriented Programming with Classes
+- **ES6 Classes:** Uses ES6 `class` syntax to define `Book`, `Library`, and `DomBoard` objects, encapsulating data and behaviors.
+- **Private Fields and Methods:** Implements private fields and methods (e.g., `#tableHeader`, `#table`) for encapsulation and data hiding.
+- **Static Properties:** Utilizes static properties for reusable class-level data (e.g., static table header).
+- **Unique Identifiers:** Uses `crypto.randomUUID()` to assign a unique ID to each book for reliable operations.
 
 ### 2. Array Management
-- **Dynamic Data Storage:** Books are managed in the `myLibrary` array, showcasing array manipulation.
+- **Dynamic Data Storage:** Books are managed in a `books` array within the `Library` class, showcasing array manipulation.
 - **Array Methods:** Uses `.push()`, `.findIndex()`, and `.splice()` for adding, finding, and removing books.
 
 ### 3. DOM Manipulation
